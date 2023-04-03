@@ -26,9 +26,11 @@ use tokio_util::codec::{BytesCodec, FramedRead};
 mod config;
 pub mod err;
 mod list_actions;
+mod new_list_actions;
 mod upload;
 
 pub use list_actions::*;
+pub use new_list_actions::*;
 pub use upload::*;
 pub mod timeout;
 pub use config::*;

@@ -26,7 +26,9 @@ pub enum Error {
         backtrace: Backtrace,
     },
     #[snafu(display("S3 operation timed out"))]
-    Timeout { source: tokio::time::error::Elapsed },
+    Timeout {
+        source: tokio::time::error::Elapsed,
+    },
     #[snafu(display("Error listing objects in S3: {:?}", source))]
     ListObjectsV2 {
         source: RusotoError<ListObjectsV2Error>,
@@ -48,7 +50,9 @@ pub enum Error {
         source: RusotoError<GetObjectError>,
     },
     #[snafu(display("IO error: {}", source))]
-    TokioIo { source: tokio::io::Error },
+    TokioIo {
+        source: tokio::io::Error,
+    },
     AnyError {
         source: Box<dyn std::error::Error + Send + Sync>,
     },
@@ -87,7 +91,6 @@ pub enum Error {
         bucket: String,
         source: SdkError<GetObjectError>,
     },
-
 }
 
 impl<T> From<RusotoError<T>> for Error
